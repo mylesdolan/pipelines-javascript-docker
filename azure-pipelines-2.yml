@@ -16,7 +16,6 @@ steps:
 
 - task: AzureRmWebAppDeployment@4
   inputs:
-    ConnectionType: 'AzureRM'
     azureSubscription: 'TheConnection'
     appType: 'webApp'
     WebAppName: 'MDPipelineTest'
