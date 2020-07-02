@@ -1,0 +1,26 @@
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)/build'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+    verbose: true
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'af2ff8b7-fd77-4ce8-a1d4-2a4fe19234e8'
+    appType: 'webApp'
+    WebAppName: 'MDPipelineTest'
+    deployToSlotOrASE: true
+    ResourceGroupName: 'TestPipeLines'
+    SlotName: 'staging'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
