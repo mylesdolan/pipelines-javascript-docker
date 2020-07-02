@@ -17,7 +17,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure Pass (af2ff8b7-fd77-4ce8-a1d4-2a4fe19234e8)'
+    azureSubscription: 'TheConnection'
     appType: 'webApp'
     WebAppName: 'MDPipelineTest'
     deployToSlotOrASE: true
